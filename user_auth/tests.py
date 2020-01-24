@@ -19,5 +19,6 @@ class ModelTestCase(TestCase):
     
     def test_count_photos(self):
         photo=Photos.objects.create(label="Photo1",like=5,caption="This a test photo")
-        album=Album.objects.create(photo)
+        album=Album.objects.create()
+        album.photos.add(photo)
         self.assertEqual(album.count_photos(),1)

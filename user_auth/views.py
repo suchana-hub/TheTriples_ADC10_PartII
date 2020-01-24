@@ -35,7 +35,7 @@ def post_sign_up(req):
     #add permission
 
     permission=Permission.objects.get(
-        codename="add_student",
+        codename="add_photos",
         content_type=content_type
     )
 
