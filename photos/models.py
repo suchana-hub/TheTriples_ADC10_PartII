@@ -8,10 +8,24 @@ class Photos(models.Model):
     caption=models.TextField()
     uploaded_at=models.DateTimeField(auto_now_add=True)
 
-class Album:
+    def valid_caption(self):
+        return self.caption!=""
+        
+    def valid_like(self):
+        return self.like>0
+    
+    def valid_caption(self):
+        return self.caption!=""
+
+class Album(models.Model):
     photos=models.ManyToManyField(Photos)
     date=models.DateField(auto_now=True)
-    like=models.IntegerChoices(default=0)
+    like=models.IntegerField(default=0)
+
+
+
+    def count_photos(self):
+        return self.photos.all().count()
 
 
  
