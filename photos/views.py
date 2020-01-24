@@ -57,7 +57,11 @@ def post_add_photos(req):
 
     return redirect('photos_home')
 
+#home page cannot be accessed without login
 def get_photos_home(req):
+    if not req.user.is_authenticated:
+        return redirect("login")
+
     all_photos=Photos.objects.all()
     if 'query_lable' in req.GET:
         all_photos=Photos.objects.filter(label=req.GET['query_lable'])
