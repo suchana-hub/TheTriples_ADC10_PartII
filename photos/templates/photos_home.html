@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        img{
+            height: 100px;
+            widows: 100px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <form action="../photos_home" method="get">
+        <input type="text" name="query_lable">
+        <input type="submit" value="search">
+    </form>
+
+    <div>
+        {%for photo in photos%}
+        <div>
+            {{photo.label}}
+            {{photo.caption}}
+            {{photo.uploaded_at}}
+            <img src="..{{photo.photo}}" alt="" srcset="">
+            <a href="../update_photos/{{photo.id}}">Edit</a>
+            <a href="../delete_photos/{{photo.id}}">Delete</a>
+        </div>
+        {%endfor%}
+    </div>
+</body>
+</html>
