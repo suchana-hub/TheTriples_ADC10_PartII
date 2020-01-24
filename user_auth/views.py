@@ -1,7 +1,11 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Permission
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout,login
+
+from django.contrib.contenttypes.models import ContentType
+
+from photos.models import Photos
 # Create your views here.
 
 def get_home(req):
@@ -26,6 +30,17 @@ def post_sign_up(req):
 
     user.save()
 
+    content_type=ContentType.objects.get_for_model(Photos)
+
+    #add permission
+
+    permission=Permission.objects.get(
+        codename="add_student",
+        content_type=content_type
+    )
+
+    user.user_permissions.add(permission)
+    
     return redirect("login")
 
 def post_login(req):
