@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> Photo Sharing Platform</title>
+  <link rel= "stylesheet" type= "text/css" href="css/loginform.css">
+  <link rel= "stylesheet" type= "text/css" href="css/logo.css">
+  
+  </head>
+<body>
+  <div class="container">
+    <h1 style="text-align:center">Photo Sharing Platform</h1>
+    <img src="image/logo.jpg" alt="Logo" class="center" height="150" width="500"> <br>
+  
+    <form action="./post_login" method="POST" style="border:1px solid #ccc">
+        {%csrf_token%}
+  <div>
+    <label for="uname">Username</label><br>
+    <input type="text" placeholder="Enter Username" name="username" >
+    <label for="psw">Password</label><br>
+    <input type="password" placeholder="Enter Password" name="password" >
+<br>
+    <a href=""> <button type="submit">Login</button></a>
+
+    <br>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    
+  <div class="container1" style="background-color:#f1f1f1">
+    
+    <span class="psw"> <a href="#">Forgot password?</a></span>
+  </div>
+</form>
+</div>
+<a href="./sign_up"><button>Sign up</button></a>
+
+</body>
+</html>
