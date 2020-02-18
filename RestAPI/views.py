@@ -7,7 +7,14 @@ from .models import Profile
 # Create your views here.
  
 
-def photo_data(request):
+
+ 
+
+
+ 
+
+@csrf_exempt
+def get_add_photo(request):
     if request.method == "GET":
         photo = Profile.objects.all()
         dict = {
@@ -17,20 +24,7 @@ def photo_data(request):
             "result":dict
             }
             )
- 
 
-def get_photo(request, pk):
-    if request.method == "GET":
-        try:
-            photo = Profile.objects.get(pk = pk)
-            response = json.dumps([{'ID':photo.id, 'Name':photo.account_name, 'Following': photo.following, 'Followers':photo.followers, 'Avaliable':photo.image_avaliable}])
-            return HttpResponse(response, content_type='text/json')
-        except:
-            return JsonResponse({"Error":"No photo with the given id found."})
- 
-
-@csrf_exempt
-def add_photo(request):
     if request.method == "POST":
  
         new = json.loads(request.body)
@@ -46,7 +40,7 @@ def add_photo(request):
  
 
 @csrf_exempt
-def update(request, pk):
+def get_update_delete(request, pk):
     photo = Profile.objects.get(pk=pk)
     if request.method == "GET":
         return JsonResponse({"ID":photo.id,"account_name":photo.account_name,"following":photo.following,"followers":photo.followers,"image_avaliable":photo.image_avaliable})
